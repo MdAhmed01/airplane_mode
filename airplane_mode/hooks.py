@@ -184,8 +184,8 @@ use_json_request_body = True
 # Hook on document methods and events
 
 # doc_events = {
-# 	"*": {
-# 		"on_update": "method",
+# 	"Ride Booking": {
+# 		"before_insert": "method",
 # 		"on_cancel": "method",
 # 		"on_trash": "method"
 # 	}

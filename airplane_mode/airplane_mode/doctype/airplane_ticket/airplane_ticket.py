@@ -31,25 +31,38 @@ class AirplaneTicket(Document):
 		ticket_status: DF.Literal["Booked", "Checked-In", "Boarded"]
 		total_amount: DF.Currency
 	# end: auto-generated types
+
+
+	#Generate ramdom seat for passengers
 	def before_save(self):
 		alphabet=["A","B","C","D","E","F"]
 		self.number=random.randrange(1,100)
 		self.letter=random.choice(alphabet)
 		self.seat=str(self.number)+self.letter
 
-		
-
+	#No duplicates add_on allow 
 	def validate(self):
-		items_amount=0
-		for add_on in self.add_ons:
-			items_amount+=add_on.amount
-		self.total_amount=items_amount + self.flight_price
-#Write a document hook to prevent the submission of the Airplane Ticket
-#  document if the status is not equal to Boarded.
+		seen=set()
+		unique_add_ons=[]
+		for row in self.add_ons:
+			if row.item not in seen:
+				seen.add(row.item)
+				unique_add_ons.append(row)      
+
+		self.add_ons = unique_add_ons
+
+	
+    # Don't allow submit if status is not boarded
 	def on_submit(self):
 		if self.ticket_status != "Boarded":
 			frappe.throw("You cannot submit the Airplane Ticket document unless the status is 'Boarded'.")
 	
+	
+
+
+
+
+
 
 	from typing import TYPE_CHECKING
 

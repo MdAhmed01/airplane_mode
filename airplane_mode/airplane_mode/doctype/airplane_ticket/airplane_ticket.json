@@ -138,7 +138,8 @@
   {
    "fieldname": "total_amount",
    "fieldtype": "Currency",
-   "label": "Total Amount"
+   "label": "Total Amount",
+   "read_only": 1
   },
   {
    "fieldname": "seat",
@@ -173,7 +174,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-08-27 12:25:00.412420",
+ "modified": "2026-08-27 14:12:44.307475",
  "modified_by": "Administrator",
  "module": "Airplane Mode",
  "name": "Airplane Ticket",

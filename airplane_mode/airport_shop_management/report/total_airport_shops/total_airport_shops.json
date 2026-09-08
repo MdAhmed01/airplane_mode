@@ -1,0 +1,32 @@
+{
+ "add_total_row": 1,
+ "add_translate_data": 0,
+ "columns": [],
+ "creation": "2026-09-09 00:50:11.209070",
+ "disable_prepared_report_automation": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "doctype_to_sync": [],
+ "filters": [],
+ "generate_csv": 0,
+ "idx": 0,
+ "is_standard": "Yes",
+ "modified": "2026-09-09 00:51:51.644431",
+ "modified_by": "Administrator",
+ "module": "Airport Shop Management",
+ "name": "Total Airport Shops",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "select Airport,\ncount(case when status='leased' then 1 end) as Leased_shop,\ncount(case when status='Available' then 1 end) as Available_shop,\ncount(shop_number) as Total_shops\nfrom `tabShop` \ngroup by airport \norder by count(shop_number) desc;",
+ "ref_doctype": "Shop",
+ "report_name": "Total Airport Shops",
+ "report_type": "Query Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  }
+ ],
+ "snapshot_report": 0,
+ "timeout": 0
+}

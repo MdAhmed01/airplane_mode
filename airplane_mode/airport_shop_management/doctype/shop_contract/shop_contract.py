@@ -15,8 +15,8 @@ class ShopContract(Document):
 		from frappe.types import DF
 
 		amended_from: DF.Link | None
-		contract_end_date: DF.Date | None
-		contract_start_data: DF.Date | None
+		contract_end_date: DF.Date
+		contract_start_data: DF.Date
 		rent_amount: DF.Currency
 		security_deposite: DF.Currency
 		shop: DF.Link

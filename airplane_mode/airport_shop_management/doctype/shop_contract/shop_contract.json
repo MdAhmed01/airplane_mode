@@ -38,7 +38,8 @@
   {
    "fieldname": "contract_start_data",
    "fieldtype": "Date",
-   "label": "Contract Start data"
+   "label": "Contract Start data",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_lmqx",
@@ -63,7 +64,8 @@
   {
    "fieldname": "contract_end_date",
    "fieldtype": "Date",
-   "label": "Contract End Date"
+   "label": "Contract End Date",
+   "reqd": 1
   },
   {
    "fieldname": "status",
@@ -96,7 +98,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-09-07 22:31:44.749407",
+ "modified": "2026-09-08 15:35:37.305205",
  "modified_by": "Administrator",
  "module": "Airport Shop Management",
  "name": "Shop Contract",

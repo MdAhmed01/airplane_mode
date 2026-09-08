@@ -16,6 +16,8 @@ class Shop(Document):
 
 		airport: DF.Link
 		area: DF.Data | None
+		current_contract: DF.Link | None
+		current_tenant: DF.Link | None
 		location: DF.Data | None
 		shop_category: DF.Link | None
 		shop_name: DF.Data | None

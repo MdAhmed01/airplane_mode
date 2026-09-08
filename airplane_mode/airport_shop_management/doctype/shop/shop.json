@@ -15,6 +15,10 @@
   "shop_number",
   "status",
   "shop_category",
+  "section_break_xyhk",
+  "current_tenant",
+  "column_break_zttd",
+  "current_contract",
   "physical_properties_section",
   "area",
   "column_break_zfmt"
@@ -59,8 +63,7 @@
   },
   {
    "fieldname": "physical_properties_section",
-   "fieldtype": "Section Break",
-   "label": "Physical Properties"
+   "fieldtype": "Section Break"
   },
   {
    "description": "sq ft",
@@ -76,19 +79,42 @@
    "fieldname": "shop_name",
    "fieldtype": "Data",
    "label": "Shop Name",
-   "mandatory_depends_on": "eval:doc.status==\"Lease\";"
+   "mandatory_depends_on": "eval:doc.status==\"Lease\";",
+   "read_only_depends_on": "eval:doc.status!=\"Lease\";"
   },
   {
    "fieldname": "shop_category",
    "fieldtype": "Link",
    "label": "Shop Category",
    "options": "Shop Category"
+  },
+  {
+   "fieldname": "section_break_xyhk",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "current_tenant",
+   "fieldtype": "Link",
+   "label": "Current Tenant",
+   "options": "Shop Tenant",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_zttd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "current_contract",
+   "fieldtype": "Link",
+   "label": "Current Contract",
+   "options": "Shop Contract",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-07 19:17:32.653897",
+ "modified": "2026-09-08 15:48:30.991156",
  "modified_by": "Administrator",
  "module": "Airport Shop Management",
  "name": "Shop",

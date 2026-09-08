@@ -28,6 +28,6 @@ class ShopTenant(Document):
 		base=self.company_name if self.is_organization else self.tenant_name
 		prefix='TEN-'
 		series=getseries(base,3)
-		self.name=f'{prefix}{base.replace(" ","-").upper()}{series}' if base else self.name
+		self.name=f'{prefix}{base.replace(" ","-").upper()}-{series}' if base else self.name
 
 	_DOCTYPE_NAME = "Shop Tenent"

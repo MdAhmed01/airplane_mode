@@ -4,6 +4,7 @@
 
 import frappe
 from frappe.model.document import Document
+from frappe.utils import add_to_date
 
 
 class ShopContract(Document):
@@ -17,7 +18,7 @@ class ShopContract(Document):
 
 		amended_from: DF.Link | None
 		contract_end_date: DF.Date
-		contract_start_data: DF.Date
+		contract_start_date: DF.Date
 		rent_amount: DF.Currency
 		security_deposite: DF.Currency
 		shop: DF.Link
@@ -48,7 +49,10 @@ class ShopContract(Document):
 			frappe.throw(f"Shop {shop.name} is already leased. Cannot create a new contract for this shop.")
 
 	
-
-	
+	#Contract Agreement duration validation
+	def validate(self):
+		self.contract_end_date=add_to_date(self.contract_start_date,years=2)
+		if self.contract_start_date >= self.contract_end_date:
+			frappe.throw("Contract start date must be before contract end date")
 
 	_DOCTYPE_NAME = "Shop Contract"

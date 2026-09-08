@@ -4,10 +4,12 @@
 # import frappe
 import frappe
 import random
+from frappe.model.docstatus import DocStatus
 from frappe.model.document import Document
 
 
 class AirplaneTicket(Document):
+	
 	# begin: auto-generated types
 	# This code is auto-generated. Do not modify anything in this block.
 
@@ -21,26 +23,26 @@ class AirplaneTicket(Document):
 		amended_from: DF.Link | None
 		departure_date: DF.Date
 		departure_time: DF.Time
-		destination_airport_code: DF.Data | None
+		destination_airport_code: DF.Data
 		duration_of_flight: DF.Duration
 		flight: DF.Link
 		flight_price: DF.Currency
+		gate_number: DF.Data | None
 		passenger: DF.Link
 		seat: DF.Data | None
-		source_airport_code: DF.Data | None
-		ticket_status: DF.Literal["Booked", "Checked-In", "Boarded"]
+		source_airport_code: DF.Data
+		status: DF.Literal["Booked", "Checked-In", "Boarded"]
 		total_amount: DF.Currency
 	# end: auto-generated types
 
-
-	#Generate ramdom seat for passengers
+	# Calculate total amount
 	def before_save(self):
-		alphabet=["A","B","C","D","E","F"]
-		self.number=random.randrange(1,100)
-		self.letter=random.choice(alphabet)
-		self.seat=str(self.number)+self.letter
+			amount=0
+			for item in self.add_ons:
+				amount+=item.amount
+			self.total_amount=self.flight_price+amount
 
-	#No duplicates add_on allow 
+# 	#No duplicates add_on allow 
 	def validate(self):
 		seen=set()
 		unique_add_ons=[]
@@ -50,40 +52,32 @@ class AirplaneTicket(Document):
 				unique_add_ons.append(row)      
 
 		self.add_ons = unique_add_ons
-
+		self.validate_max_seats()
 	
-    # Don't allow submit if status is not boarded
+#     # Don't allow submit if status is not boarded
 	def on_submit(self):
-		if self.ticket_status != "Boarded":
+		if self.status != "Boarded":
 			frappe.throw("You cannot submit the Airplane Ticket document unless the status is 'Boarded'.")
 	
 	
+	#Generate ramdom seat for passengers
+	# def before_insert(self):
+	# 	alphabet=["A","B","C","D","E"]
+	# 	self.number=random.randrange(1,100)
+	# 	self.letter=random.choice(alphabet)
+	# 	self.seat=str(self.number)+self.letter
 
+	#check the number of booked tickets exceed the capacity of the airplane
+	def validate_max_seats(self):
+		
+		flight=frappe.get_doc('Airplane Flight', self.flight)
+		capacity=frappe.db.get_value('Airplane',flight.airplane,'capacity')
+		booked_tickets=frappe.db.count('Airplane Ticket',{'flight':self.flight})
+		if booked_tickets>=capacity:
+			frappe.throw("No more seats available for this flight.")
 
+	def before_insert(self):
+		self.number=random.randrange(1,100)
+		self.gate_number=str(self.number)	
 
-
-
-
-	from typing import TYPE_CHECKING
-
-	if TYPE_CHECKING:
-		from airplane_mode.airplane_mode.doctype.airplane_ticket_add_on_item.airplane_ticket_add_on_item import AirplaneTicketAddonItem
-		from frappe.types import DF
-
-		add_ons: DF.Table[AirplaneTicketAddonItem]
-		amended_from: DF.Link | None
-		departure_date: DF.Date
-		departure_time: DF.Time
-		destination_airport: DF.Link
-		destination_airport_code: DF.Data
-		duration_of_flight: DF.Duration
-		flight: DF.Link
-		flight_price: DF.Currency
-		passenger: DF.Link
-		source_airport: DF.Link
-		source_airport_code: DF.Data
-		ticket_status: DF.Literal["Booked", "Checked-In", "Boarded"]
-		total_amount: DF.Currency
-	# end: auto-generated types
-
-	_DOCTYPE_NAME = "Airplane Ticket"
+_DOCTYPE_NAME = "Airplane Ticket"

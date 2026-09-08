@@ -9,9 +9,11 @@
  "engine": "InnoDB",
  "field_order": [
   "airline_data_section",
+  "headquaters",
   "founding_year",
+  "column_break_idkf",
   "customer_care_number",
-  "headquaters"
+  "website"
  ],
  "fields": [
   {
@@ -38,6 +40,17 @@
    "in_list_view": 1,
    "label": "Headquaters",
    "reqd": 1
+  },
+  {
+   "fieldname": "column_break_idkf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "website",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Website",
+   "options": "URL"
   }
  ],
  "grid_page_length": 50,
@@ -48,7 +61,7 @@
    "link_fieldname": "airline"
   }
  ],
- "modified": "2026-08-20 12:31:06.956588",
+ "modified": "2026-09-06 16:20:19.990560",
  "modified_by": "Administrator",
  "module": "Airplane Mode",
  "name": "Airline",
@@ -66,6 +79,45 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Airport Authority Personnel",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Fleet Manager",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Travel Agent",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Flight Crew Member",
+   "share": 1
   }
  ],
  "row_format": "Dynamic",

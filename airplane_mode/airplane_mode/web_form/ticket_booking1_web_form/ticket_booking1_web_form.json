@@ -23,7 +23,7 @@
  "login_required": 0,
  "max_attachment_size": 0,
  "meta_title": "DISCARD",
- "modified": "2026-08-29 12:57:20.834702",
+ "modified": "2026-09-02 16:31:46.256516",
  "modified_by": "Administrator",
  "module": "Airplane Mode",
  "name": "ticket-booking1-web-form",
@@ -33,7 +33,7 @@
  "show_attachments": 0,
  "show_list": 0,
  "show_sidebar": 0,
- "success_message": "You will get details soon via email",
+ "success_message": "You will recieve details in your email soon",
  "success_title": "TICKET BOOKED",
  "title": "Ticket Booking Web Form",
  "web_form_fields": [
@@ -53,19 +53,6 @@
   },
   {
    "allow_read_on_all_link_options": 0,
-   "fieldname": "column_break_bdlm",
-   "fieldtype": "Column Break",
-   "hidden": 0,
-   "label": "",
-   "max_length": 0,
-   "max_value": 0,
-   "precision": "",
-   "read_only": 0,
-   "reqd": 0,
-   "show_in_filter": 0
-  },
-  {
-   "allow_read_on_all_link_options": 0,
    "fieldname": "flight",
    "fieldtype": "Link",
    "hidden": 0,
@@ -80,28 +67,16 @@
   },
   {
    "allow_read_on_all_link_options": 0,
-   "fieldname": "section_break_qbrs",
-   "fieldtype": "Section Break",
-   "hidden": 0,
-   "label": "",
-   "max_length": 0,
-   "max_value": 0,
-   "precision": "",
-   "read_only": 0,
-   "reqd": 0,
-   "show_in_filter": 0
-  },
-  {
-   "allow_read_on_all_link_options": 0,
    "fieldname": "flight_price",
    "fieldtype": "Currency",
    "hidden": 0,
    "label": "Flight Price",
    "max_length": 0,
    "max_value": 0,
+   "options": "",
    "precision": "",
-   "read_only": 0,
-   "reqd": 1,
+   "read_only": 1,
+   "reqd": 0,
    "show_in_filter": 0
   }
  ]

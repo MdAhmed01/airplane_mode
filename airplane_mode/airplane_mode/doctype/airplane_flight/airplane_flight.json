@@ -3,7 +3,7 @@
  "allow_bulk_edit": 1,
  "allow_guest_to_view": 1,
  "allow_rename": 1,
- "autoname": "{airplane}-{MM}-{YYYY}-{#}",
+ "autoname": "{airplane}-{MM}-{YYYY}-{##}",
  "creation": "2026-08-26 13:23:43.024958",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -24,6 +24,8 @@
   "time_of_departure",
   "is_published",
   "route",
+  "section_break_uhur",
+  "flight_crew",
   "section_break_kugy",
   "amended_from"
  ],
@@ -55,11 +57,12 @@
    "fieldtype": "Column Break"
   },
   {
-   "default": "Schedule",
+   "default": "Scheduled",
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
-   "options": "Schedule\nCompleted\nCancelled"
+   "options": "Scheduled\nCompleted\nCancelled",
+   "reqd": 1
   },
   {
    "fieldname": "departure_details_section",
@@ -139,6 +142,16 @@
    "fieldname": "route",
    "fieldtype": "Data",
    "label": "route"
+  },
+  {
+   "fieldname": "section_break_uhur",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "flight_crew",
+   "fieldtype": "Table",
+   "label": "Flight Crew",
+   "options": "Flight Crew Member"
   }
  ],
  "grid_page_length": 50,
@@ -152,7 +165,7 @@
    "link_fieldname": "passenger"
   }
  ],
- "modified": "2026-08-28 15:37:06.004839",
+ "modified": "2026-09-07 07:19:47.104573",
  "modified_by": "Administrator",
  "module": "Airplane Mode",
  "name": "Airplane Flight",
@@ -171,6 +184,49 @@
    "share": 1,
    "submit": 1,
    "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Airport Authority Personnel",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Fleet Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "if_owner": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Travel Agent",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Flight Crew Member",
+   "share": 1
   }
  ],
  "route": "Flights",

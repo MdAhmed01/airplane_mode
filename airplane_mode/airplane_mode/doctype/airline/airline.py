@@ -17,6 +17,7 @@ class Airline(Document):
 		customer_care_number: DF.Data
 		founding_year: DF.Int
 		headquaters: DF.Data
+		website: DF.Data | None
 	# end: auto-generated types
 
 	_DOCTYPE_NAME = "Airline"

@@ -194,23 +194,22 @@ use_json_request_body = True
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"all": [
-# 		"airplane_mode.tasks.all"
-# 	],
-# 	"daily": [
-# 		"airplane_mode.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"airplane_mode.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"airplane_mode.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"airplane_mode.tasks.monthly"
-# 	],
-# }
+scheduler_events = {
+	"cron":{
+        "0 9 1 * *": [
+            "airplane_mode.task.send_payment_reminders"
+
+            ]
+    }	
+}
+
+fixtures = [
+    {
+      "dt":"Shop Type",
+      "filters":{'enabled':1}
+    }
+]
+
 
 # Testing
 # -------

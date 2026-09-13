@@ -1,0 +1,28 @@
+
+<div class="shop-details">
+	
+
+    <h3> 
+		<strong>Shop Number:</strong>
+        {{ doc.shop_number }}
+        
+    </h3>
+
+    <p>
+        {{ doc.airport }}
+    </p>
+
+    <p>
+        {{ doc.location }}
+		|
+		{{ doc.area }} Sq-Ft
+		|
+		{{ doc.shop_type }}
+    </p>
+
+    
+	<a href="/{{ doc.route |e }}"> View Shop </a>
+
+</div>
+
+

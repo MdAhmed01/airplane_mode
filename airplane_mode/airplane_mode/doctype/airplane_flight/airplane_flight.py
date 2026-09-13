@@ -36,17 +36,17 @@ class AirplaneFlight(WebsiteGenerator):
             frappe.throw("A flight cannot have more than 6 Flight Attendants.")
 
     def on_update(self):
-        frappe.msgprint("ON_UPDATE IS RUNNING")
+        self.handle_gate_number_change()
 
+    def handle_gate_number_change(self):
         old_doc = self.get_doc_before_save()
 
         if old_doc and old_doc.gate_number != self.gate_number:
-
             frappe.enqueue(
                 method="airplane_mode.job.update_ticket_gate_number",
                 flight=self.name,
                 gate_number=self.gate_number,
-                queue="default",
+                queue="short",
                 enqueue_after_commit=True
             )
 

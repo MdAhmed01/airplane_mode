@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>{{ doc.shop_number }}</title>
+
+    <link rel="stylesheet"
+          href="/assets/airplane_mode/css/picnic.min.css">
+
+</head>
+
+<body>
+
+    <main>
+
+        <p>
+            <a href="/Shops">
+                &larr; Back to Shops
+            </a>
+        </p>
+
+        <h1>{{ doc.shop_number }}</h1>
+
+        <hr>
+
+        <p>
+            <strong>Airport:</strong>
+            {{ doc.airport }}
+        </p>
+
+    
+
+        <p>
+            <strong>Terminal And Floor:</strong>
+            {{ doc.location }}
+        </p>
+
+        <p>
+            <strong>Area:</strong>
+            {{ doc.area }} Sq-Ft
+        </p>
+
+        <p>
+            <strong>Shop Type:</strong>
+            {{ doc.shop_type }}
+        </p>
+
+      
+
+        <br>
+
+        <a href="/shop-leads-web-form/new?Shop={{ doc.shop_number | e }}"
+           class="button">
+            Interested in Renting This Shop
+        </a>
+
+    </main>
+
+</body>
+
+</html>

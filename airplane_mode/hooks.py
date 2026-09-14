@@ -200,7 +200,8 @@ scheduler_events = {
             "airplane_mode.task.send_payment_reminders"
 
             ]
-    }	
+    },
+    "daily":["airplane_mode.task.create_monthly_rent_payments"]	
 }
 
 fixtures = [

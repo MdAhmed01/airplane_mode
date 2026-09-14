@@ -1,0 +1,39 @@
+{
+ "attach_files": "",
+ "attach_print": 0,
+ "channel": "Email",
+ "condition": "doc.status==\"Active\"",
+ "condition_type": "Python",
+ "creation": "2026-09-13 17:36:41.252040",
+ "date_changed": "contract_end_date",
+ "days_in_advance": 30,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Shop Contract",
+ "enabled": 1,
+ "event": "Days Before",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "Contract Expiry Notification!\n\nYour contract {{doc.name}} is going to expire with in 30 days \nKindly renewed your contract before the end date {{doc.contract_end_date}}",
+ "message_type": "Markdown",
+ "minutes_offset": 0,
+ "modified": "2026-09-13 17:36:41.252040",
+ "modified_by": "Administrator",
+ "module": "Airport Shop Management",
+ "name": "Shop Contract Expiry",
+ "notification_type": "Alert",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "receiver_by_role": "Airport Authority Personnel"
+  },
+  {
+   "receiver_by_role": "System Manager"
+  }
+ ],
+ "send_system_notification": 0,
+ "send_to_all_assignees": 1,
+ "sender": "Rent Reminder Gmail",
+ "sender_email": "smartahmed8809@gmail.com",
+ "subject": "Shop Contract Expiry Reminder for  Contract {{doc.name}}"
+}

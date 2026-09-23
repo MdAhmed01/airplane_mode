@@ -17,9 +17,9 @@
   "due_date",
   "payment_date",
   "section_break_haxc",
-  "amount_due",
+  "rent_amount",
   "column_break_zuqr",
-  "amount_paid",
+  "amount",
   "naming_series",
   "section_break_vayq",
   "amended_from"
@@ -54,6 +54,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Lease Contract",
+   "link_filters": "[[\"Shop Contract\",\"status\",\"=\",\"Active\"]]",
    "options": "Shop Contract",
    "reqd": 1
   },
@@ -67,15 +68,15 @@
   {
    "fieldname": "payment_date",
    "fieldtype": "Date",
-   "label": "Payment Date",
-   "reqd": 1
+   "label": "Payment Date"
   },
   {
+   "default": "Pending",
    "fieldname": "status",
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status",
-   "options": "Pending\nPaid\nOverdue\nPartially Paid",
+   "options": "Pending\nPaid\nUnpaid",
    "reqd": 1
   },
   {
@@ -93,22 +94,8 @@
   },
   {
    "fieldname": "payment_month",
-   "fieldtype": "Select",
+   "fieldtype": "Date",
    "label": "Payment Month",
-   "options": "Jan\nFeb\nMar\nApr\nMay\nJun\nJul\nAug\nSept\nOct\nNov\nDec",
-   "reqd": 1
-  },
-  {
-   "fetch_from": "lease_contract.rent_amount",
-   "fieldname": "amount_due",
-   "fieldtype": "Currency",
-   "label": "Amount Due",
-   "reqd": 1
-  },
-  {
-   "fieldname": "amount_paid",
-   "fieldtype": "Currency",
-   "label": "Amount Paid",
    "reqd": 1
   },
   {
@@ -130,14 +117,31 @@
    "fieldname": "naming_series",
    "fieldtype": "Select",
    "label": "Naming Series",
-   "options": "RCPT-.YYYY.-.##"
+   "options": "RCPT-.YYYY.-.##",
+   "print_hide": 1
+  },
+  {
+   "fetch_from": "lease_contract.rent_amount",
+   "fieldname": "rent_amount",
+   "fieldtype": "Currency",
+   "label": "Rent Amount ",
+   "non_negative": 1,
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "description": "to be paid",
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "label": "Amount",
+   "non_negative": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-09-07 22:31:44.655964",
+ "modified": "2026-09-14 23:00:52.963337",
  "modified_by": "Administrator",
  "module": "Airport Shop Management",
  "name": "Shop Rent Payment",

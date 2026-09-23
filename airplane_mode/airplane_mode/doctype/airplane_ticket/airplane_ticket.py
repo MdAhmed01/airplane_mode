@@ -29,7 +29,7 @@ class AirplaneTicket(Document):
 		flight_price: DF.Currency
 		gate_number: DF.Data | None
 		passenger: DF.Link
-		seat: DF.Data | None
+		seat: DF.Data
 		source_airport_code: DF.Data
 		status: DF.Literal["Booked", "Checked-In", "Boarded"]
 		total_amount: DF.Currency
@@ -76,8 +76,6 @@ class AirplaneTicket(Document):
 		if booked_tickets>=capacity:
 			frappe.throw("No more seats available for this flight.")
 
-	def before_insert(self):
-		self.number=random.randrange(1,100)
-		self.gate_number=str(self.number)	
+	
 
 _DOCTYPE_NAME = "Airplane Ticket"

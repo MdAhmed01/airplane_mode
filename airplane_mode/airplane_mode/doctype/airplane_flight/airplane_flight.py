@@ -35,10 +35,9 @@ class AirplaneFlight(WebsiteGenerator):
         if attendant_count > 6:
             frappe.throw("A flight cannot have more than 6 Flight Attendants.")
 
-    def on_update(self):
-        self.handle_gate_number_change()
+ 
 
-    def handle_gate_number_change(self):
+    def on_update(self):
         old_doc = self.get_doc_before_save()
 
         if old_doc and old_doc.gate_number != self.gate_number:

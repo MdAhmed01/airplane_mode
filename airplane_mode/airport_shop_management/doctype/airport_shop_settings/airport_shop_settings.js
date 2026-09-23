@@ -1,11 +1,8 @@
 // Copyright (c) 2026, Ahmed Ansari and contributors
 // For license information, please see license.txt
 
-// frappe.ui.form.on("Shop Contract", {
-//     refresh(frm){
+// frappe.ui.form.on("Airport Shop Settings", {
+// 	refresh(frm) {
 
-//     }
-
-// })     
-
-
+// 	},
+// });

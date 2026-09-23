@@ -9,7 +9,11 @@
  "field_order": [
   "full_name",
   "id",
-  "role"
+  "role",
+  "column_break_xptg",
+  "email",
+  "phone_number",
+  "license_number"
  ],
  "fields": [
   {
@@ -30,13 +34,36 @@
    "fieldname": "role",
    "fieldtype": "Select",
    "label": "Role",
-   "options": "pilot\nco pilot\nattendees"
+   "options": "Pilot\nCo-Pilot\nFlight Attendant",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_xptg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "phone_number",
+   "fieldtype": "Data",
+   "label": "Phone Number"
+  },
+  {
+   "depends_on": "eval:doc.role == \"Pilot\" || doc.role == \"Co-Pilot\"",
+   "fieldname": "license_number",
+   "fieldtype": "Data",
+   "label": "License Number",
+   "mandatory_depends_on": "eval:doc.role == \"Pilot\" || doc.role == \"Co-Pilot\""
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-07 07:39:26.068134",
+ "modified": "2026-09-13 16:20:31.059181",
  "modified_by": "Administrator",
  "module": "Airplane Mode",
  "name": "Crew Member",

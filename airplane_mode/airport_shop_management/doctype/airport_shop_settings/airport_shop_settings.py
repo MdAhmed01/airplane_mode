@@ -5,7 +5,7 @@
 from frappe.model.document import Document
 
 
-class FlightCrewMember(Document):
+class AirportShopSettings(Document):
 	# begin: auto-generated types
 	# This code is auto-generated. Do not modify anything in this block.
 
@@ -14,11 +14,8 @@ class FlightCrewMember(Document):
 	if TYPE_CHECKING:
 		from frappe.types import DF
 
-		crew_member: DF.Link
-		parent: DF.Data
-		parentfield: DF.Data
-		parenttype: DF.Data
-		role: DF.Data | None
+		default_rate: DF.Currency
+		rent_reminders: DF.Check
 	# end: auto-generated types
 
-	_DOCTYPE_NAME = "Flight Crew Member"
+	_DOCTYPE_NAME = "Airport Shop Settings"

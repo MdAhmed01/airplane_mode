@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_bulk_edit": 1,
+ "allow_guest_to_view": 1,
  "allow_rename": 1,
  "autoname": "Shop-.###",
  "creation": "2026-09-07 08:26:22.760460",
@@ -8,11 +9,11 @@
  "engine": "InnoDB",
  "field_order": [
   "shop_details_section",
-  "shop_name",
+  "shop_number",
   "airport",
   "location",
   "column_break_ztmo",
-  "shop_number",
+  "shop_name",
   "status",
   "shop_category",
   "section_break_xyhk",
@@ -21,7 +22,10 @@
   "current_contract",
   "physical_properties_section",
   "area",
-  "column_break_zfmt"
+  "is_published",
+  "column_break_zfmt",
+  "shop_type",
+  "route"
  ],
  "fields": [
   {
@@ -58,8 +62,9 @@
    "default": "Available",
    "fieldname": "status",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Status",
-   "options": "Available\nLease\nUnder Construction"
+   "options": "Available\nLeased\nUnder Construction"
   },
   {
    "fieldname": "physical_properties_section",
@@ -68,14 +73,17 @@
   {
    "description": "sq ft",
    "fieldname": "area",
-   "fieldtype": "Data",
-   "label": "Area"
+   "fieldtype": "Float",
+   "label": "Area",
+   "non_negative": 1,
+   "reqd": 1
   },
   {
    "fieldname": "column_break_zfmt",
    "fieldtype": "Column Break"
   },
   {
+   "fetch_if_empty": 1,
    "fieldname": "shop_name",
    "fieldtype": "Data",
    "label": "Shop Name",
@@ -86,7 +94,8 @@
    "fieldname": "shop_category",
    "fieldtype": "Link",
    "label": "Shop Category",
-   "options": "Shop Category"
+   "options": "Shop Category",
+   "read_only_depends_on": "eval:doc.status!=\"Leased\";"
   },
   {
    "fieldname": "section_break_xyhk",
@@ -109,12 +118,33 @@
    "label": "Current Contract",
    "options": "Shop Contract",
    "read_only": 1
+  },
+  {
+   "fieldname": "shop_type",
+   "fieldtype": "Link",
+   "label": "Shop Type",
+   "link_filters": "[[\"Shop Type\",\"enabled\",\"=\",1]]",
+   "options": "Shop Type"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_published",
+   "fieldtype": "Check",
+   "label": "Is Published?",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "label": "route"
   }
  ],
  "grid_page_length": 50,
+ "has_web_view": 1,
  "index_web_pages_for_search": 1,
+ "is_published_field": "is_published",
  "links": [],
- "modified": "2026-09-08 15:48:30.991156",
+ "modified": "2026-09-16 00:54:40.041057",
  "modified_by": "Administrator",
  "module": "Airport Shop Management",
  "name": "Shop",
@@ -132,11 +162,50 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Guest",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Airport Authority Personnel",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Airport Authority Personnel",
+   "share": 1,
+   "write": 1
   }
  ],
+ "route": "Shops",
  "row_format": "Dynamic",
  "rows_threshold_for_grid_search": 20,
+ "show_title_field_in_link": 1,
  "sort_field": "creation",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "shop_number"
 }

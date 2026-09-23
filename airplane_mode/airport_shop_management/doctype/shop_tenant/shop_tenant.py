@@ -24,6 +24,7 @@ class ShopTenant(Document):
 		tax_id: DF.Data | None
 		tenant_name: DF.Data | None
 	# end: auto-generated types
+
 	def autoname(self):
 		base=self.company_name if self.is_organization else self.tenant_name
 		prefix='TEN-'

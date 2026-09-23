@@ -14,10 +14,13 @@ class CrewMember(Document):
 	if TYPE_CHECKING:
 		from frappe.types import DF
 
+		email: DF.Data | None
 		full_name: DF.Data
 		id: DF.Data
+		license_number: DF.Data | None
 		name: DF.Int | None
-		role: DF.Literal["pilot", "co pilot", "attendees"]
+		phone_number: DF.Data | None
+		role: DF.Literal["Pilot", "Co-Pilot", "Flight Attendant"]
 	# end: auto-generated types
 
 	_DOCTYPE_NAME = "Crew Member1"

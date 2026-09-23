@@ -5,7 +5,7 @@
 from frappe.model.document import Document
 
 
-class CrewMemberRole(Document):
+class ShopType(Document):
 	# begin: auto-generated types
 	# This code is auto-generated. Do not modify anything in this block.
 
@@ -14,7 +14,8 @@ class CrewMemberRole(Document):
 	if TYPE_CHECKING:
 		from frappe.types import DF
 
-		role_description: DF.SmallText | None
+		description: DF.SmallText | None
+		enabled: DF.Check
 	# end: auto-generated types
 
-	_DOCTYPE_NAME = "Crew Member Role"
+	_DOCTYPE_NAME = "Shop Type"

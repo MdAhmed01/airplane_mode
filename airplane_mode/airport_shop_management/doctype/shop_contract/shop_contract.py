@@ -17,6 +17,7 @@ class ShopContract(Document):
 		from frappe.types import DF
 
 		amended_from: DF.Link | None
+		area: DF.Float
 		contract_end_date: DF.Date
 		contract_start_date: DF.Date
 		rent_amount: DF.Currency
@@ -27,6 +28,22 @@ class ShopContract(Document):
 		tenant: DF.Link
 	# end: auto-generated types
 
+	def before_insert(self):
+			shop=frappe.get_doc('Shop',self.shop)
+			if shop.status=="Leased" and shop.current_contract!=self.name:
+				frappe.throw(f"Shop {shop.name} is already leased. Cannot create a new contract for this shop.")
+
+	#Contract Agreement duration validation
+	def before_save(self):
+
+		if self.contract_start_date > self.contract_end_date:
+			frappe.throw("Contract start date cannot be after contract end date.")
+
+		min_end_date=add_to_date(self.contract_start_date,years=1)
+		if self.contract_end_date < min_end_date:
+			frappe.throw("Contract duration must be at least 1 years.")
+
+	#display shop name and and marks as leased 
 	def on_update_after_submit(self):
 		
 		shop=frappe.get_doc('Shop',self.shop)
@@ -35,7 +52,8 @@ class ShopContract(Document):
 			shop.shop_name=self.shop_display_name
 			shop.current_tenant = self.tenant
 			shop.current_contract = self.name
-			
+
+		shop.save(ignore_permissions=True)	
 		if self.status in ("Expired", "Cancel"):
 			shop.status = "Available"
 			shop.shop_name = ""
@@ -43,16 +61,12 @@ class ShopContract(Document):
 			shop.current_contract = None
 		shop.save(ignore_permissions=True)
 
+	#calculate rent amount based on area
 	def before_insert(self):
-		shop=frappe.get_doc('Shop',self.shop)
-		if shop.status=="Leased" and shop.current_contract!=self.name:
-			frappe.throw(f"Shop {shop.name} is already leased. Cannot create a new contract for this shop.")
+		setting=frappe.get_single("Airport Shop Settings")
+		if not self.rent_amount:
+			self.rent_amount=setting.default_rate * self.area
 
-	
-	#Contract Agreement duration validation
-	def validate(self):
-		self.contract_end_date=add_to_date(self.contract_start_date,years=2)
-		if self.contract_start_date >= self.contract_end_date:
-			frappe.throw("Contract start date must be before contract end date")
+
 
 	_DOCTYPE_NAME = "Shop Contract"

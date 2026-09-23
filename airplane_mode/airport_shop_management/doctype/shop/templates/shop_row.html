@@ -1,28 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop List</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
+</head>
+<body>
 
-<div class="shop-details">
-	
+    {% if doc.status == "Available" %}
 
-    <h3> 
-		<strong>Shop Number:</strong>
-        {{ doc.shop_number }}
-        
-    </h3>
+    <article class="card" style="margin-bottom: 1.5rem;">
+        <div style="padding: 1rem;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+                <h5 style="margin: 0;">
+                    <a href="/{{ doc.route |e }}">
+                        {{ doc.name |e }}
+                    </a>
+                </h5>
 
-    <p>
-        {{ doc.airport }}
-    </p>
+                <span class="label success">
+                    {{ doc.status |e }}
+                </span>
+            </div>
 
-    <p>
-        {{ doc.location }}
-		|
-		{{ doc.area }} Sq-Ft
-		|
-		{{ doc.shop_type }}
-    </p>
+            <div class="flex two" style="margin-top: 1rem;">
+                <div>
+                    <small style="color: #666;">Airport</small>
+                    <p style="margin: 0;">{{ doc.airport |e }}</p>
+                </div>
 
-    
-	<a href="/{{ doc.route |e }}"> View Shop </a>
+                <div>
+                    <small style="color: #666;">Total Area</small>
+                    <p style="margin: 0;">{{ doc.area |e }}</p>
+                </div>
+            </div>
+                <a href="/{{ doc.route |e }}"class="button">View Shop</a>
+            </div>
+            </div>
+        </div>
+    </article>
 
-</div>
+    {% endif %}
 
+</body>
+</html>
 

@@ -1,37 +1,37 @@
+
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
     <meta charset="UTF-8">
-
-    <title>{{ doc.shop_number }}</title>
-
-    <link rel="stylesheet"
-          href="/assets/airplane_mode/css/picnic.min.css">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ doc.name }}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
 </head>
-
 <body>
-
-    <main>
-
+    
+    <div style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
         <p>
             <a href="/Shops">
                 &larr; Back to Shops
             </a>
         </p>
-
-        <h1>{{ doc.shop_number }}</h1>
-
-        <hr>
+        <div style="margin-bottom: 2rem;">
+            <h1> Shop Number : {{ doc.shop_number |e }}</h1>
+            <span class="label 
+                {% if doc.status == 'Available' %}success
+                {% elif doc.status == 'Leased' %}warning
+                {% elif doc.status == 'Under Construction' %}error
+                {% endif %}">
+                {{ doc.status |e }}
+            </span>
+        </div>
+        
+        <div class="flex two" style="margin-bottom: 2rem;">
 
         <p>
             <strong>Airport:</strong>
             {{ doc.airport }}
         </p>
-
-    
 
         <p>
             <strong>Terminal And Floor:</strong>
@@ -48,17 +48,13 @@
             {{ doc.shop_type }}
         </p>
 
-      
-
-        <br>
-
-        <a href="/shop-leads-web-form/new?Shop={{ doc.shop_number | e }}"
-           class="button">
-            Interested in Renting This Shop
-        </a>
-
-    </main>
-
+        </div>
+        
+        {% if doc.status == "Available" %}
+        <div style="margin-top: 3rem;">
+            <p>Interested in renting shop?<a href="/shop-leads-web-form/new?Shop={{ doc.shop_number | e }}"class="button">Click here</a></p>
+        </div>
+        {% endif %}
+    </div>
 </body>
-
 </html>

@@ -15,7 +15,7 @@ class Shop(WebsiteGenerator):
 		from frappe.types import DF
 
 		airport: DF.Link
-		area: DF.Data
+		area: DF.Float
 		current_contract: DF.Link | None
 		current_tenant: DF.Link | None
 		is_published: DF.Check
@@ -28,15 +28,13 @@ class Shop(WebsiteGenerator):
 		status: DF.Literal["Available", "Leased", "Under Construction"]
 	# end: auto-generated types
 
-	#Shop Number Naming convention
-def before_save(self):
-	if self.status=='Available':
-		self.is_published=1
-	else:
-		self.is_published=0
+	#Shop webpage control publish
+	def before_save(self):
+		if self.status=='Available':
+			self.is_published=1
+		else:
+			self.is_published=0
 
 
-		
-	
 
 	_DOCTYPE_NAME = "Shop"
